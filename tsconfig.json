@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
-    "lib": ["dom", "es2015"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "noEmitHelpers": true,
     "types": [
+      "core-js",
       "jasmine",
       "node",
       "protractor",
@@ -21,7 +21,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src"
+    "src/mobile"
   ],
   "compileOnSave": false,
   "atom": {

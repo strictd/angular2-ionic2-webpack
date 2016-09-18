@@ -10,9 +10,9 @@ import { JwtHelper } from 'angular2-jwt';
 import { Observable, Observer, Subscription } from 'rxjs';
 import 'rxjs/add/operator/share';
 
-import '../style/app.scss';
+import '../../style/app.scss';
 
-import { ConfigApp } from '../../config.app';
+import { ConfigApp } from '../../../config.app';
 
 /*
  * App Component

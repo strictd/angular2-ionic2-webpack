@@ -3,7 +3,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { RolePermissions } from '@strictd/role-permissions/role-permissions';
 
-import { App } from '../../app';
+import { App } from '../../app/app.component';
 
 @Component({
   selector: 'home-page',

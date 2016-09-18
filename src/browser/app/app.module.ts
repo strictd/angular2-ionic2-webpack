@@ -18,7 +18,7 @@ import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { routing } from './app.routing';
 
-import { App }   from '../app';
+import { App }   from '../app/app.component';
 import { LoginComponent } from '../components/login/login';
 import { Home } from '../components/home/home';
 

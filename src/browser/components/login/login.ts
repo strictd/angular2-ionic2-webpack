@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from '../../../services/login-service/login-service';
 
-import { App } from '../../app';
+import { App } from '../../app/app.component';
 
 export interface LoginForm {
   login: string;

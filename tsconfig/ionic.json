@@ -21,7 +21,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src"
+    "src/desktop"
   ],
   "compileOnSave": false,
   "atom": {

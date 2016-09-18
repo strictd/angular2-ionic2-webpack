@@ -51,9 +51,9 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#entry
    */
   config.entry = isTest ? {} : {
-    'polyfills': './src/desktop/polyfills.ts',
-    'vendor': './src/desktop/vendor.ts',
-    'app': isProd ? './src/desktop/app/main.prod.ts' : './src/desktop/app/main.dev.ts', // our angular app
+    'polyfills': './src/browser/app/polyfills.ts',
+    'vendor': './src/browser/app/vendor.ts',
+    'app': isProd ? './src/browser/app/main.prod.ts' : './src/browser/app/main.dev.ts', // our angular app
   };
 
   /**
@@ -77,7 +77,7 @@ module.exports = function makeWebpackConfig() {
     // only discover files that have those extensions
     extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
     alias: {
-      'app': 'src/desktop'
+      'app': 'src/browser'
     }
   };
 
@@ -116,18 +116,18 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.css$/,
-        exclude: root('src', 'desktop'),
+        exclude: root('src', 'browser'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src', 'desktop'), loader: 'raw!postcss'},
+      {test: /\.css$/, include: root('src', 'browser'), loader: 'raw!postcss'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
       // all css in src/style will be bundled in an external css file
       {
         test: /\.scss$/,
-        exclude: root('src', 'desktop'),
+        exclude: root('src', 'browser'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass')
       },
       // all css required in src/app files will be merged in js files
@@ -138,7 +138,7 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.sass$/,
-        exclude: root('src', 'desktop'),
+        exclude: root('src', 'browser'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?indentedSyntax')
       },
       // all css required in src/app files will be merged in js files
@@ -199,7 +199,7 @@ module.exports = function makeWebpackConfig() {
       // Inject script and link tags into html files
       // Reference: https://github.com/ampedandwired/html-webpack-plugin
       new HtmlWebpackPlugin({
-        template: './src/desktop/public/index.html',
+        template: './src/browser/assets/index.html',
         chunksSortMode: 'dependency'
       }),
 
@@ -233,7 +233,7 @@ module.exports = function makeWebpackConfig() {
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin([{
-        from: root('src/public')
+        from: root('src','assets')
       }])
     );
   }
@@ -273,7 +273,7 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/webpack-dev-server.html
    */
   config.devServer = {
-    contentBase: './src/public',
+    contentBase: './src/browser/assets',
     historyApiFallback: true,
     stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
   };
