@@ -1,10 +1,13 @@
-var gulp = require('gulp');
-var gulpWatch = require('gulp-watch');
-var del = require('del');
-var runSequence = require('run-sequence');
-var webpack = require('webpack');
-var webpackConfig = require('./webpack-ionic.config.js');
-var argv = process.argv;
+var gulp = require('gulp'),
+    gulpWatch = require('gulp-watch'),
+    del = require('del'),
+    runSequence = require('run-sequence'),
+    webpack = require('webpack'),
+    webpackConfig = require('./webpack-ionic.config.js'),
+    es = require('event-stream'),
+    argv = process.argv,
+    isRelease = false,
+    shouldWatch = false;
 
 /**
  * Ionic Gulp tasks, for more information on each see
@@ -14,12 +17,12 @@ var argv = process.argv;
  * changes, but you are of course welcome (and encouraged) to customize your
  * build however you see fit.
  */
-var isRelease = false;
+
 if (argv.indexOf('--release') > -1) {
   isRelease = true;
   process.env.NODE_ENV = 'production';
 }
-var shouldWatch = argv.indexOf('-l') > -1 || argv.indexOf('--livereload') > -1;
+shouldWatch = argv.indexOf('-l') > -1 || argv.indexOf('--livereload') > -1;
 
 gulp.task('lint', require('ionic-gulp-tslint'));
 gulp.task('clean', function(){
