@@ -112,7 +112,8 @@
   "version": "2.0.0",
   "license": "MIT",
   "contributors": [
-    "Gary Taylor <gary@strictdevelopment.com>"
+    "Gary Taylor <gary@strictdevelopment.com>",
+    "Jesus Rodriguez <foxandxss@gmail.com>"
   ],
   "config": {
     "ionic_copy": "../../../../ionic-copy.config.js",
