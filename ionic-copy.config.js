@@ -4,11 +4,11 @@
 module.exports = {
   include: [
     {
-      src: 'app/assets/',
+      src: 'src/mobile/assets/',
       dest: 'www/assets/'
     },
     {
-      src: 'app/index.html',
+      src: 'src/mobile/index.html',
       dest: 'www/index.html'
     },
     {

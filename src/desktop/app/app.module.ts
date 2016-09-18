@@ -9,20 +9,20 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { MadameService } from '@strictd/madame/madame-service';
 import { RolePermissions } from '@strictd/role-permissions/role-permissions';
 
-import { ConfigApp } from '../../../../config.app';
-import { AuthGuard } from '../../../auth-guard';
+import { ConfigApp } from '../../../config.app';
+import { AuthGuard } from '../auth-guard';
 
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../modules/shared.module';
 
 import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
 
 import { routing } from './app.routing';
 
-import { App }   from '../../app';
-import { LoginComponent } from '../../components/login/login';
-import { Home } from '../../components/home/home';
+import { App }   from '../app';
+import { LoginComponent } from '../components/login/login';
+import { Home } from '../components/home/home';
 
-import { LoginService } from '../../../services/login-service/login-service';
+import { LoginService } from '../../services/login-service/login-service';
 
 export let customHttpProvider: any = {
   provide: AuthHttp,

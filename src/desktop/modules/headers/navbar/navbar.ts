@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { App } from '../../app';
+import { App } from '../../../app';
 
 @Component({
   selector: 'navbar-component',

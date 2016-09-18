@@ -10,7 +10,7 @@ import { CanActivate,
 
 import { tokenNotExpired } from 'angular2-jwt';
 
-import { App } from './app/app';
+import { App } from './app';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

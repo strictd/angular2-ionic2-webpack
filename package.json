@@ -1,30 +1,4 @@
 {
-  "name": "app",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "clean": "rimraf node_modules doc dist && npm cache clean",
-    "clean-install": "npm run clean && npm install",
-    "clean-start": "npm run clean-install && npm start",
-    "watch": "webpack --watch --progress --profile",
-    "build": "rimraf dist && webpack --progress --profile --bail",
-    "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080",
-    "webdriver-update": "webdriver-manager update",
-    "webdriver-start": "webdriver-manager start",
-    "lint": "tslint --force \"src/**/*.ts\"",
-    "e2e": "protractor",
-    "e2e-live": "protractor --elementExplorer",
-    "pretest": "npm run lint",
-    "test": "karma start",
-    "posttest": "remap-istanbul -i coverage/json/coverage-final.json -o coverage/html -t html",
-    "test-watch": "karma start --no-single-run --auto-watch",
-    "ci": "npm run e2e && npm run test",
-    "docs": "typedoc --options typedoc.json src/app/app.component.ts",
-    "start": "npm run server",
-    "start:hmr": "npm run server -- --hot",
-    "postinstall": "npm run webdriver-update"
-  },
-
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
@@ -143,7 +117,7 @@
   ],
   "config": {
     "ionic_copy": "../../../../ionic-copy.config.js",
-    "ionic_src_dir": "app"
+    "ionic_src_dir": "src/mobile"
   },
   "scripts": {
     "clean": "rimraf node_modules doc dist && npm cache clean",
@@ -154,7 +128,7 @@
     "ionic": "npm run ionic-serve",
     "watch": "webpack --watch --progress --profile",
     "build": "rimraf dist && webpack --progress --profile --bail",
-    "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080 --host 0.0.0.0 --content-base src/public/",
+    "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080 --host 0.0.0.0 --content-base src/desktop/public/",
     "prebuild": "npm run desktop-config",
     "preserver": "npm run desktop-config",
     "desktop-config": "cp tsconfig/desktop.json tsconfig.json",

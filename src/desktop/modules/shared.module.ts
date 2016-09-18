@@ -8,10 +8,8 @@ import { SetFocusDirective } from '@strictd/set-focus/set-focus';
 
 import { ModalModule } from 'ng2-modal';
 
-import { HeaderComponent } from
-    '../components/header/header';
-import { NavbarComponent } from
-    '../components/navbar/navbar';
+import { HeadersModule } from './headers/headers.module';
+
 
 @NgModule({
   imports: [
@@ -19,18 +17,16 @@ import { NavbarComponent } from
     FormsModule,
     RouterModule,
 
-    ModalModule
+    ModalModule,
+    HeadersModule
   ],
   declarations: [
-    HeaderComponent,
-    NavbarComponent,
     SetFocusDirective
   ],
   exports: [
-    HeaderComponent,
-    NavbarComponent,
     SetFocusDirective,
-    ModalModule
+    ModalModule,
+    HeadersModule
   ]
 })
 export class SharedModule {}

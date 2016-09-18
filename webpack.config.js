@@ -51,9 +51,9 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#entry
    */
   config.entry = isTest ? {} : {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts' // our angular app
+    'polyfills': './src/desktop/polyfills.ts',
+    'vendor': './src/desktop/vendor.ts',
+    'app': isProd ? './src/desktop/app/main.prod.ts' : './src/desktop/app/main.dev.ts', // our angular app
   };
 
   /**
@@ -77,7 +77,7 @@ module.exports = function makeWebpackConfig() {
     // only discover files that have those extensions
     extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
     alias: {
-      'app': 'src/app'
+      'app': 'src/desktop'
     }
   };
 
@@ -116,18 +116,18 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.css$/,
-        exclude: root('src', 'app'),
+        exclude: root('src', 'desktop'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src', 'app'), loader: 'raw!postcss'},
+      {test: /\.css$/, include: root('src', 'desktop'), loader: 'raw!postcss'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
       // all css in src/style will be bundled in an external css file
       {
         test: /\.scss$/,
-        exclude: root('src', 'app'),
+        exclude: root('src', 'desktop'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass')
       },
       // all css required in src/app files will be merged in js files
@@ -138,7 +138,7 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.sass$/,
-        exclude: root('src', 'app'),
+        exclude: root('src', 'desktop'),
         loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?indentedSyntax')
       },
       // all css required in src/app files will be merged in js files
@@ -199,7 +199,7 @@ module.exports = function makeWebpackConfig() {
       // Inject script and link tags into html files
       // Reference: https://github.com/ampedandwired/html-webpack-plugin
       new HtmlWebpackPlugin({
-        template: './src/public/index.html',
+        template: './src/desktop/public/index.html',
         chunksSortMode: 'dependency'
       }),
 
