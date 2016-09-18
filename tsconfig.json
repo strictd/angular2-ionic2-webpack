@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "types": [
+      "core-js",
+      "jasmine",
+      "node",
+      "protractor",
+      "selenium-webdriver"
+    ]    
+  },
+  "filesGlob": [
+    "**/*.ts",
+    "!node_modules/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "app"
+  ],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

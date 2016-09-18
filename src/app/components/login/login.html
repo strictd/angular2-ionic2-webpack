@@ -1,0 +1,19 @@
+<div class="loginComponent">
+  <img class="logo" src="img/logo.png" border="0" width="150" height="150"><br />Strict Development, Inc.
+
+  <div style="font-size:9pt;">Login: admin - Pass: admin<br />Must have backend/ node service running</div>
+  <form #loginForm="ngForm">
+    <div class="login_row">
+      <label for="login">User Name:&nbsp;</label>
+      <input type="text" required size="25" [(ngModel)]="loginData.login" name="login" #login placeholder="Username" (keypress)="onKeyPress($event)" setFocus>
+    </div>
+    <div class="login_row">
+      <label for="password">Password:&nbsp;</label>
+      <input type="password" required size="25" [(ngModel)]="loginData.password" name="password" #password placeholder="Password">
+    </div>
+    <div class="login_row">
+      <button (click)="submitLogin()" *ngIf="!runningLogin" type="submit" class="btn btn-default">&lt;  Login  &gt;</button>
+      <div *ngIf="runningLogin">Loggin In</div>
+    </div>
+  </form>
+</div>

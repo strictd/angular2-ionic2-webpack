@@ -1,0 +1,34 @@
+.login {
+  width: 40%;
+}
+
+.loginComponent {
+  border: 1px solid black;
+  margin: 20px auto;
+  padding: 8px;
+  width: 380px;
+  text-align: center;
+}
+
+.loginComponent .logo {
+  margin: 8px;
+}
+
+.loginComponent label {
+  float: left;
+  width: 130px;
+  text-align: right;
+  font-size: 18px;
+  color: blue;
+  font-weight: bold;
+}
+
+.loginComponent input {
+  float: left;
+}
+
+.loginComponent .login_row {
+  clear: left;
+  padding: 4px;
+}
+
