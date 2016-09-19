@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { MadameService } from '@strictd/madame/madame-service';
+import { MadameService } from '@strictd/ng2-madame/madame-service';
 
 @Injectable()
 export class LoginService {

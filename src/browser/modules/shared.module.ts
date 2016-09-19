@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { SetFocusDirective } from '@strictd/set-focus/set-focus';
+import { SetFocusDirective } from '@strictd/ng2-set-focus/set-focus';
 
 import { ModalModule } from 'ng2-modal';
 

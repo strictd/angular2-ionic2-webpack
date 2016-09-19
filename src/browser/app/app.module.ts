@@ -6,7 +6,7 @@ import { HttpModule, Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
-import { MadameService } from '@strictd/madame/madame-service';
+import { MadameService } from '@strictd/ng2-madame/madame-service';
 import { RolePermissions } from '@strictd/role-permissions/role-permissions';
 
 import { ConfigApp } from '../../../config.app';
