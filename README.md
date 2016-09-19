@@ -168,7 +168,7 @@ angular2-ionic2-webpack/
  │
  │
  ├──tsconfig/                   * tsconfig base files, copied to tsconfig.json with gulp
- │   ├──desktop.json              * tsconfig file adjusted for angular2 compiles
+ │   ├──browser.json              * tsconfig file adjusted for angular2 compiles
  │   └──ionic.json                * tsconfig file adjusted for ionic2 compiles
  │
  │
