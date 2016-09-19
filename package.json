@@ -10,7 +10,7 @@
     "@angular/platform-server": "2.0.0",
     "@angular/router": "3.0.0",
     "@strictd/ng2-madame": "^1.1.4",
-    "@strictd/role-permissions": "^1.1.3",
+    "@strictd/ng2-role-permissions": "^1.1.3",
     "@strictd/ng2-set-focus": "^1.1.3",
     "angular2-jwt": "^0.1.22",
     "awesome-typescript-loader": "^2.2.4",
