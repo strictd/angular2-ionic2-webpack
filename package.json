@@ -125,7 +125,7 @@
     "clean-start": "npm run clean-install && npm start",
     "start:raw": "npm run server",
     "start:hmr": "npm run server -- --hot",
-    "start": "npm run server:dash",
+    "start": "npm run server",
     "ionic": "npm run ionic-serve",
     "watch": "webpack --watch --progress --profile",
     "build": "rimraf dist && webpack --progress --profile --bail",
