@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ApplicationRef,
     ChangeDetectorRef,  } from '@angular/core';
 import { Router,  } from '@angular/router';
 
-import { RolePermissions } from '@strictd/role-permissions/role-permissions';
+import { RolePermissions } from '@strictd/ng2-role-permissions/role-permissions';
 import { MadameService } from '@strictd/ng2-madame/madame-service';
 
 import { JwtHelper } from 'angular2-jwt';

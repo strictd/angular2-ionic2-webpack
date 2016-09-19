@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RolePermissions, UserPermissions } from '@strictd/role-permissions/role-permissions';
+import { RolePermissions, UserPermissions } from '@strictd/ng2-role-permissions/role-permissions';
 
 @Injectable()
 export class ConfigApp {
