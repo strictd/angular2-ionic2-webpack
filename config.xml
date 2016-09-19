@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.strictd.angular2-ionic2-starter" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Angular2-Ionic2-Starter</name>
-    <description>Leadrocket v3</description>
-    <author email="gary@strictdevelopment.com" href="http://strictdevelopment.com">Strict Development Team</author>
+    <description>Angular2 Ionic2 Webpacked Starter</description>
+    <author email="gary@strictdevelopment.com" href="http://strictdev.com">Strict Development Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
