@@ -43,7 +43,13 @@ if (process.env.NODE_ENV === 'development') {
   app.use(errorhandler({ dumpExceptions: true, showStack: true }));
 }
 
-app.locals.db = require('./db/db_knex_strictd_mysql');
+// Load hosts, Set app.locals from Host and IP
+let host = require('./config/host');
+app.use((req, res, next) => host.setAppHostInfo(app, req, res, next));
+
+// Load Databases
+let dbConfig = require('./config/db');
+app.use((req, res, next) => dbConfig.setDatabase(app, req, res, next));
 
 // Load Modules
 require('./modules/login/login.restful')(app);
