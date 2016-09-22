@@ -116,7 +116,7 @@
     "Jesus Rodriguez <foxandxss@gmail.com>"
   ],
   "config": {
-    "ionic_copy": "../../../../ionic-copy.config.js",
+    "ionic_copy": "./ionic-copy.config.js",
     "ionic_src_dir": "src/mobile"
   },
   "scripts": {
