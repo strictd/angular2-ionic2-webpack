@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     gulpWatch = require('gulp-watch'),
+    gulpRename = require('gulp-rename'),
     del = require('del'),
     runSequence = require('run-sequence'),
     webpack = require('webpack'),
@@ -108,4 +109,15 @@ gulp.task('configs', function() {
   return gulp.src('./config.app.ts')
     .pipe(fixConfigFile())
     .pipe(gulp.dest('./'));
-})
+});
+
+gulp.task('tsconfig', function() {
+  let srcFile = 'tsconfig/browser.json';
+  if (argv.indexOf('--mobile') > -1) {
+    srcFile = 'tsconfig/mobile.json';
+  }
+
+  return gulp.src(srcFile, {base: './'}).
+      pipe(gulpRename('tsconfig.json')).
+      pipe(gulp.dest('./'));
+});
