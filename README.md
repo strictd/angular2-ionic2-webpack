@@ -127,7 +127,10 @@ angular2-ionic2-webpack/
  │   │   │
  │   │   └──auth-guard.js         * login systems @CanActivate browser authguard
  │   │
- │   │ 
+ │   │
+ │   ├──desktop/                * future home for angular-electron integration
+ │   │
+ │   │
  │   ├──mobile/                 * mobile view files for ionic2-angular2 layouts
  │   │   ├──app/                  * IonicApp folder
  │   │   │   ├──app.component.ts    * a simple version of our App component components
