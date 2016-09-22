@@ -21,7 +21,8 @@
   ],
   "exclude": [
     "node_modules",
-    "src/mobile"
+    "src/mobile",
+    "src/desktop"
   ],
   "compileOnSave": false,
   "atom": {

@@ -11,7 +11,7 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 module.exports = {
   entry: {
-    app: './src-ionic/app'
+    app: './src/mobile/app'
   },
 
   resolve: {
@@ -56,7 +56,7 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{
-      from: 'src-ionic/assets',
+      from: 'src/mobile/assets',
       to: 'assets'
     }]),
 
