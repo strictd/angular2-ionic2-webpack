@@ -23,6 +23,7 @@ This way an ionic component can use the same code to fetch data as your web app 
 * [Frequently asked questions](#faq)
 * [TypeScript](#typescript)
 * [License](#license)
+
 ---------------------------------
 
 ### Beginners
@@ -48,8 +49,8 @@ find what version you want. ```nvm install v6.6.0```
 
 ## Install of NPM Modules, Required once 
 Using the command prompt enter:
-1. ```npm install``` in main directory
-2. navigate to ```/backend``` and ```npm install``` 
+* ```npm install``` in main directory
+* navigate to ```/backend``` and ```npm install``` 
  
 
 Once the installs are finished, there should be node_modules inside the main directory and and another in ```backend/```
@@ -57,12 +58,12 @@ Once the installs are finished, there should be node_modules inside the main dir
 ## Install of Ionic Plugins, Required once
 
 To install Cordova, make sure you have Node.js installed, then run \
-mac: ```sudo npm install -g cordova``` \
-windows: ```npm install -g cordova```
+* mac: ```sudo npm install -g cordova``` 
+* windows: ```npm install -g cordova```
 
 Install Ionic
-mac: ```sudo npm install -g ionic``` \
-windows ```npm install -g ionic```
+* mac: ```sudo npm install -g ionic``` 
+* windows ```npm install -g ionic```
 
 
 ```ionic state restore```
@@ -108,7 +109,9 @@ Sets Madame Server / Socket Host
 ### Here are all the steps for starting the project
 Basic commands to run your project are:
 1. start backend: /backend ```node server.js``` 
+
 2. start angular: ```npm start```
+
 3. start ionic: ```npm run ionic serve```
 
 Then navigate to: 
