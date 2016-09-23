@@ -15,7 +15,7 @@ This way an ionic component can use the same code to fetch data as your web app 
     * [Ionic2 Setup](#ionic2-setup)
     * [Node Server Setup](#node-server-setup)
     * [Documentation](#documentation)
-    * [File Structure](#filestructure)
+    * [File Structure](#file-structure)
 * [Testing](#testing)
 * [Frequently asked questions](#faq)
 * [TypeScript](#typescript)
@@ -277,7 +277,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 > To take full advantage of TypeScript with autocomplete you would have to use an editor with the correct TypeScript plugins.
 
 ## Use latest TypeScript compiler
-TypeScript 1.7.x includes everything you need. Make sure to upgrade, even if you installed TypeScript previously.
+TypeScript 2.0.x includes everything you need. Make sure to upgrade, even if you installed TypeScript previously.
 
 ```
 npm install --global typescript
