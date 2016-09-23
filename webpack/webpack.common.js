@@ -56,8 +56,8 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{
-      from: 'src/mobile/assets',
-      to: 'assets'
+      from: 'src/mobile/assets/',
+      to: 'assets/'
     }]),
 
     new ExtractTextPlugin('../css/app.md.css')
