@@ -4,8 +4,8 @@ To make it easier to understand and save time on development!
 
 Our repositorie's structure is setup to help you get to coding your project and skip the hassle of setting up from scratch. 
 We created this repo so that you have all you need to develop for several platforms. We found the original repo was difficult and confusing when it came to adding support for more platforms. 
-This structure was made to make it easier for you to reuse code and stay organized. 
-By manipulating data outside the view, you will be able to reuse code for other components. 
+This structure will make it easier for you to reuse code and stay organized. 
+By manipulating data outside the view in the services folder, you will be able to reuse code for other components. 
 This way an ionic component can use the same code to fetch data as your web app therefore cutting down on development time. 
 
 # Table of Contents
@@ -15,39 +15,53 @@ This way an ionic component can use the same code to fetch data as your web app 
     * [Node Server Startup](#node-server-startup)
     * [Angular2 Startup](#angular2-startup)
     * [Ionic2 Startup](#ionic2-startup)
+    * [Development Startup](#development-setup)
+    * [Build Project](#build-project)
     * [Documentation](#documentation)
     * [File Structure](#file-structure)
 * [Testing](#testing)
 * [Frequently asked questions](#faq)
 * [TypeScript](#typescript)
 * [License](#license)
+---------------------------------
+
+### Beginners
+If you are new to programming and are using a Windows pc that is lower then Windows 10, it may be easier to download a bash system. 
+Downloading git will allow you to do bash commands and also clone the repository through commands like ```git clone https://github.com/strictd/angular2-ionic2-webpack``` \
+[Download git](https://git-scm.com/downloads) \
+Once you have git downloaded you should be able to open git bash and run bash commands. 
+
+
 
 # How to Initialize App
+
 
 ## Setup Dependencies
 
 What you need to run this app:
-* `node` and `npm` (Use [NVM](https://github.com/creationix/nvm))
+* `node` and `npm` ([Nodejs.org/download](https://nodejs.org/en/download/) includes node 2.15.6 but you will need to update it to v6.x.x+)
 * Ensure you're running Node (`v6.x.x`+) and NPM (`3.x.x`+)
 * Check versions with ```node -v``` and ```npm -v```
-* If you are behind a version try ```npm update -g``` to update npm. 
+* If you are behind a version try ```npm update -g npm``` to update npm. 
 * For node go to [nodejs.org](https://nodejs.org/)
-find what version you want. ```nvm install v6.2.2```
+find what version you want. ```nvm install v6.6.0```
 
 ## Install of NPM Modules, Required once 
-Using the command prompt:
+Using the command prompt enter:
 1. ```npm install``` in main directory
 2. navigate to ```/backend``` and ```npm install``` 
-There should now be node_modules inside the main directory and and another inside the ```/backend```
+ 
+
+Once the installs are finished, there should be node_modules inside the main directory and and another in ```backend/```
 
 ## Install of Ionic Plugins, Required once
 
-To install Cordova, make sure you have Node.js installed, then run
-mac: ```sudo npm install -g cordova```
+To install Cordova, make sure you have Node.js installed, then run \
+mac: ```sudo npm install -g cordova``` \
 windows: ```npm install -g cordova```
 
 Install Ionic
-mac: ```sudo npm install -g ionic```
+mac: ```sudo npm install -g ionic``` \
 windows ```npm install -g ionic```
 
 
@@ -58,7 +72,7 @@ windows ```npm install -g ionic```
 
 
 # Node Server Startup
-* Copy backend/sample.env to create backend/.env and fixup any environment variables
+* Copy ```backend/sample.env``` and create ```.env``` inside ```backend/``` at ```backend/.env``` and fixup any environment variables.
 To run backend navigate to /backend and run the command:
 ```node server.js```
 
@@ -71,21 +85,10 @@ To run backend navigate to /backend and run the command:
 
 go to [http://localhost:8080](http://localhost:8080) in your browser.
 
-## Angular2 Build
-To Compile everything into dist/ for distro
-```npm run build```
-
-
 
 # Ionic2 Startup
 ```npm run ionic-serve```
 go to [http://localhost:8100](http://localhost:8100) in your browser.
-
-## Ionic2 Build
-Compiles everything into www/
-```npm run ionic-build```
-
-*ionic-build has same Switches as ionic-serve
 
 
 ## Config Updates
@@ -99,26 +102,52 @@ Sets debugging to false
 --host localhost:3080
 Sets Madame Server / Socket Host
 
+---------------------------------
+
+# Development Startup
+### Here are all the steps for starting the project
+Basic commands to run your project are:
+1. start backend: /backend ```node server.js``` 
+2. start angular: ```npm start```
+3. start ionic: ```npm run ionic serve```
+
+Then navigate to: 
+Webapp: ```localhost:8080```
+Ionic: ```localhost:8100```
+
+
+Once you have started the webpack you will see the webpack-dashboard.
+Changes to file in the front end will automatically be built and shown in the webpack-dashboard. 
+Changes to the backend wont take effect and you will have to restart server.js to show changes.
 
 ---------------------------------
+
 ## Update NPM Modules
 * ```npm update```
+
 ---------------------------------
-## Documentation
+
+# Build Project
+
+## Angular2 Build
+To Compile everything into dist/ for distro
+```npm run build```
+
+## Ionic2 Build
+Compiles everything into www/
+```npm run ionic-build```
+
+*ionic-build has same Switches as ionic-serve
+
+---------------------------------
+# Documentation
 
 You can generate api docs (using [TypeDoc](http://typedoc.io/)) for your code with the following:
 
 * `npm run docs`
 
-# Development Setup
-Once you have your project setup the basic commands to run your project is
--start backend: /backend ```node server.js``` 
--start angular: ```npm start```
--start ionic: ```npm run ionic serve```
-Then navigate to: 
-Webapp: ```localhost:8080```
-Ionic: ```localhost:8100```
-## File Structure
+---------------------------------
+# File Structure
 We use the standard component based approach. We combine files in the following areas; backend server, browser views, mobile views, and app services. Within the browser and mobile view folders we group singleton components and combined components that make up modules. 
 ```
 angular2-ionic2-webpack/
