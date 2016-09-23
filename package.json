@@ -117,7 +117,6 @@
     "Jesus Rodriguez <foxandxss@gmail.com>"
   ],
   "config": {
-    "ionic_copy": "./ionic-copy.config.js",
     "ionic_src_dir": "src/mobile"
   },
   "scripts": {
@@ -134,6 +133,7 @@
     "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080 --host 0.0.0.0",
     "prebuild": "npm run browser-config",
     "preserver": "npm run browser-config",
+    "preserver:raw": "npm run browser-config",
     "browser-config": "gulp tsconfig",
     "ionic-config": "gulp tsconfig --mobile",
     "webdriver-update": "webdriver-manager update",
@@ -150,8 +150,8 @@
     "postinstall": "npm run webdriver-update",
     "ionic-serve": "ionic serve",
     "ionic-build": "ionic-app-scripts build",
-    "compress": "ionic-app-scripts compress",
-    "copy": "ionic-app-scripts copy",
+    "ionic-compress": "ionic-app-scripts compress",
+    "ionic-copy": "ionic-app-scripts copy",
     "ionic-watch": "ionic-app-scripts watch",
     "preionic-build": "npm run ionic-config",
     "preionic-serve": "npm run ionic-build",
