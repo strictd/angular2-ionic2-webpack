@@ -11,9 +11,10 @@ This way an ionic component can use the same code to fetch data as your web app 
 # Table of Contents
 
 * [How to Initialize App](#how-to-initialize-app)
-    * [Angular2 Setup](#angular2-setup)
-    * [Ionic2 Setup](#ionic2-setup)
-    * [Node Server Setup](#node-server-setup)
+    * [Setup Dependencies](#setup-dependencies)
+    * [Node Server Startup](#node-server-startup)
+    * [Angular2 Startup](#angular2-startup)
+    * [Ionic2 Startup](#ionic2-startup)
     * [Documentation](#documentation)
     * [File Structure](#file-structure)
 * [Testing](#testing)
@@ -23,22 +24,49 @@ This way an ionic component can use the same code to fetch data as your web app 
 
 # How to Initialize App
 
-## Dependencies
+## Setup Dependencies
 
 What you need to run this app:
 * `node` and `npm` (Use [NVM](https://github.com/creationix/nvm))
 * Ensure you're running Node (`v6.x.x`+) and NPM (`3.x.x`+)
+* Check versions with ```node -v``` and ```npm -v```
+* If you are behind a version try ```npm update -g``` to update npm. 
+* For node go to [nodejs.org](https://nodejs.org/)
+find what version you want. ```nvm install v6.2.2```
 
-## Install of NPM Modules, Required once
-```npm install```
+## Install of NPM Modules, Required once 
+Using the command prompt:
+1. ```npm install``` in main directory
+2. navigate to ```/backend``` and ```npm install``` 
+There should now be node_modules inside the main directory and and another inside the ```/backend```
 
 ## Install of Ionic Plugins, Required once
+
+To install Cordova, make sure you have Node.js installed, then run
+mac: ```sudo npm install -g cordova```
+windows: ```npm install -g cordova```
+
+Install Ionic
+mac: ```sudo npm install -g ionic```
+windows ```npm install -g ionic```
+
+
 ```ionic state restore```
 
 
-# Angular2 Setup
 ---------------------------------
-## Angular2 Startup
+
+
+# Node Server Startup
+* Copy backend/sample.env to create backend/.env and fixup any environment variables
+To run backend navigate to /backend and run the command:
+```node server.js```
+
+
+---------------------------------
+
+
+# Angular2 Startup
 ```npm start```
 
 go to [http://localhost:8080](http://localhost:8080) in your browser.
@@ -48,11 +76,10 @@ To Compile everything into dist/ for distro
 ```npm run build```
 
 
-# Ionic2 Setup
----------------------------------
-## Ionic2 Startup
-```npm run ionic-serve```
 
+# Ionic2 Startup
+```npm run ionic-serve```
+go to [http://localhost:8100](http://localhost:8100) in your browser.
 
 ## Ionic2 Build
 Compiles everything into www/
@@ -60,14 +87,7 @@ Compiles everything into www/
 
 *ionic-build has same Switches as ionic-serve
 
-# Node Server Setup
----------------------------------
-### Node Server Startup
-* Copy backend/sample.env to backend/.env and fixup any environment variables
-```cd backend && node server.js```
 
-
----------------------------------
 ## Config Updates
 Set defaults, localhost:3080 for backend services
 ```gulp configs```
@@ -90,7 +110,14 @@ You can generate api docs (using [TypeDoc](http://typedoc.io/)) for your code wi
 
 * `npm run docs`
 
-
+# Development Setup
+Once you have your project setup the basic commands to run your project is
+-start backend: /backend ```node server.js``` 
+-start angular: ```npm start```
+-start ionic: ```npm run ionic serve```
+Then navigate to: 
+Webapp: ```localhost:8080```
+Ionic: ```localhost:8100```
 ## File Structure
 We use the standard component based approach. We combine files in the following areas; backend server, browser views, mobile views, and app services. Within the browser and mobile view folders we group singleton components and combined components that make up modules. 
 ```
