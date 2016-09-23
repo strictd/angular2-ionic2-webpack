@@ -1,4 +1,27 @@
-# Initialize App
+
+# Why did we create this?
+To make it easier to understand and save time on development!
+
+Our repositorie's structure is setup to help you get to coding your project and skip the hassle of setting up from scratch. 
+We created this repo so that you have all you need to develop for several platforms. We found the original repo was difficult and confusing when it came to adding support for more platforms. 
+This structure was made to make it easier for you to reuse code and stay organized. 
+By manipulating data outside the view, you will be able to reuse code for other components. 
+This way an ionic component can use the same code to fetch data as your web app therefore cutting down on development time. 
+
+# Table of Contents
+
+* [How to Initialize App](#initialize-app)
+    * [Angular2 Setup](#angular2-setup)
+    * [Ionic2 Setup](#ionic2-setup)
+    * [Node Server Setup](#node-server-setup)
+    * [Documentation](#documentation)
+    * [File Structure](#filestructure)
+* [Testing](#testing)
+* [Frequently asked questions](#faq)
+* [TypeScript](#typescript)
+* [License](#license)
+
+# How to Initialize App
 ## Install of NPM Modules, Required once
 ```npm install```
 
@@ -6,9 +29,9 @@
 ```ionic state restore```
 
 
-
+# Angular2 Setup
 ---------------------------------
-# Angular2 Startup
+## Angular2 Startup
 ```npm start```
 
 ## Angular2 Build
@@ -16,9 +39,9 @@ To Compile everything into dist/ for distro
 ```npm run build```
 
 
-
+# Ionic2 Setup
 ---------------------------------
-# Ionic2 Startup
+## Ionic2 Startup
 ```npm run ionic-serve```
 
 
@@ -28,7 +51,7 @@ Compiles everything into www/
 
 *ionic-build has same Switches as ionic-serve
 
-
+# Node Server Setup
 ---------------------------------
 ### Node Server Startup
 * Copy backend/sample.env to backend/.env and fixup any environment variables
@@ -50,8 +73,13 @@ Sets Madame Server / Socket Host
 
 ---------------------------------
 ## Update NPM Modules
-```npm update```
+* ```npm update```
+---------------------------------
+## Documentation
 
+You can generate api docs (using [TypeDoc](http://typedoc.io/)) for your code with the following:
+
+* `npm run docs`
 
 
 ## File Structure
@@ -201,5 +229,69 @@ angular2-ionic2-webpack/
  ├──webpack-ionic.config.js     * webpack mobile angular2 configuration file
  └──webpack.config.js           * webpack browser angular2 configuration file
 ```
+## Testing
+
+#### 1. Unit Tests
+
+* single run: `npm test`
+* live mode (TDD style): `npm run test-watch`
+
+#### 2. End-to-End Tests (aka. e2e, integration)
+
+* single run:
+  * in a tab, *if not already running!*: `npm start` and check out `localhost:8080` or whichever port you're using.
+  * in a new tab: `npm run webdriver-start`
+  * in another new tab: `npm run e2e`
+* interactive mode:
+  * instead of the last command above, you can run: `npm run e2e-live`
+  * when debugging or first writing test suites, you may find it helpful to try out Protractor commands without starting up the entire test suite. You can do this with the element explorer.
+  * you can learn more about [Protractor Interactive Mode here](https://github.com/angular/protractor/blob/master/docs/debugging.md#testing-out-protractor-interactively)
 
 
+# FAQ
+
+#### Do I need to add script / link tags into index.html ?
+
+No, Webpack will add all the needed Javascript bundles as script tags and all the CSS files as link tags. The advantage is that you don't need to modify the index.html every time you build your solution to update the hashes.
+
+#### How to include external angular 2 libraries ?
+
+It's simple, just install the lib via npm and import it in your code when you need it. Don't forget that you need to configure some external libs in the [bootstrap](https://github.com/preboot/angular2-webpack/blob/master/src/main.ts) of your application.
+
+#### How to include external css files such as bootstrap.css ?
+
+Just install the lib and import the css files in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/vendor.ts). For example this is how to do it with bootstrap:
+
+```sh
+npm install bootstrap@next --save
+```
+
+And in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/vendor.ts) add the following:
+
+```ts
+import 'bootstrap/dist/css/bootstrap.css';
+```
+
+# TypeScript
+
+> To take full advantage of TypeScript with autocomplete you would have to use an editor with the correct TypeScript plugins.
+
+## Use latest TypeScript compiler
+TypeScript 1.7.x includes everything you need. Make sure to upgrade, even if you installed TypeScript previously.
+
+```
+npm install --global typescript
+```
+
+## Use a TypeScript-aware editor
+
+We have good experience using these editors:
+
+* [Visual Studio Code](https://code.visualstudio.com/) 
+* [Webstorm 11+](https://www.jetbrains.com/webstorm/download/)
+* [Atom](https://atom.io/) with [TypeScript plugin](https://atom.io/packages/atom-typescript)
+* [Sublime Text](http://www.sublimetext.com/3) with [Typescript-Sublime-Plugin](https://github.com/Microsoft/Typescript-Sublime-plugin#installation)
+
+# License
+
+[MIT](/LICENSE)
