@@ -10,7 +10,7 @@ This way an ionic component can use the same code to fetch data as your web app 
 
 # Table of Contents
 
-* [How to Initialize App](#initialize-app)
+* [How to Initialize App](#how-to-intialize-app)
     * [Angular2 Setup](#angular2-setup)
     * [Ionic2 Setup](#ionic2-setup)
     * [Node Server Setup](#node-server-setup)
