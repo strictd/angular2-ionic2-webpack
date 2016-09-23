@@ -108,6 +108,7 @@ Sets Madame Server / Socket Host
 # Development Startup
 ### Here are all the steps for starting the project
 Basic commands to run your project are:
+
 1. start backend: /backend ```node server.js``` 
 
 2. start angular: ```npm start```
