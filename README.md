@@ -10,7 +10,7 @@ This way an ionic component can use the same code to fetch data as your web app 
 
 # Table of Contents
 
-* [How to Initialize App](#how-to-intialize-app)
+* [How to Initialize App](#how-to-initialize-app)
     * [Angular2 Setup](#angular2-setup)
     * [Ionic2 Setup](#ionic2-setup)
     * [Node Server Setup](#node-server-setup)
@@ -22,6 +22,13 @@ This way an ionic component can use the same code to fetch data as your web app 
 * [License](#license)
 
 # How to Initialize App
+
+## Dependencies
+
+What you need to run this app:
+* `node` and `npm` (Use [NVM](https://github.com/creationix/nvm))
+* Ensure you're running Node (`v6.x.x`+) and NPM (`3.x.x`+)
+
 ## Install of NPM Modules, Required once
 ```npm install```
 
@@ -33,6 +40,8 @@ This way an ionic component can use the same code to fetch data as your web app 
 ---------------------------------
 ## Angular2 Startup
 ```npm start```
+
+go to [http://localhost:8080](http://localhost:8080) in your browser.
 
 ## Angular2 Build
 To Compile everything into dist/ for distro
@@ -229,7 +238,7 @@ angular2-ionic2-webpack/
  ├──webpack-ionic.config.js     * webpack mobile angular2 configuration file
  └──webpack.config.js           * webpack browser angular2 configuration file
 ```
-## Testing
+# Testing
 
 #### 1. Unit Tests
 
