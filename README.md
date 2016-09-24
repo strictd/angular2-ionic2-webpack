@@ -1,12 +1,4 @@
-
-# Why did we create this?
-To make it easier to understand and save time on development!
-
-Our repositorie's structure is setup to help you get to coding your project and skip the hassle of setting up from scratch. 
-We created this repo so that you have all you need to develop for several platforms. We found the original repo was difficult and confusing when it came to adding support for more platforms. 
-This structure will make it easier for you to reuse code and stay organized. 
-By manipulating data outside the view in the services folder, you will be able to reuse code for other components. 
-This way an ionic component can use the same code to fetch data as your web app therefore cutting down on development time. 
+This repo is all you need to develop web and mobile applications. We found the original repo was difficult and confusing when it came to adding support for more platforms. This structure will make it easier for you to reuse code and stay organized. 
 
 # Table of Contents
 
@@ -45,28 +37,31 @@ What you need to run this app:
 * Check versions with ```node -v``` and ```npm -v```
 * If you are behind a version try ```npm update -g npm``` to update npm. 
 * For node go to [nodejs.org](https://nodejs.org/)
-find what version you want. ```nvm install v6.6.0```
 
 ## Install of NPM Modules, Required once 
 Using the command prompt enter:
-* ```npm install``` in main directory
-* navigate to ```/backend``` and ```npm install``` 
- 
+* from your cloned angular2-ionic2-webpack/ directory, install npm modules
+```sh
+npm install
+```
+* navigate to backend/ directory and install npm modules
+```sh
+cd backend/
+npm install
+```
 
-Once the installs are finished, there should be node_modules inside the main directory and and another in ```backend/```
+## Install of Ionic and Cordova
 
-## Install of Ionic Plugins, Required once
+* make sure you have [nodejs.org](https://nodejs.org/) installed
+* Install Cordova and Ionic-CLI
+```sh
+npm install -g cordova ionic
+```
 
-To install Cordova, make sure you have Node.js installed, then run \
-* mac: ```sudo npm install -g cordova``` 
-* windows: ```npm install -g cordova```
-
-Install Ionic
-* mac: ```sudo npm install -g ionic``` 
-* windows ```npm install -g ionic```
-
-
-```ionic state restore```
+* Install Ionic iOS Platform and Plugins
+```sh
+ionic state restore
+```
 
 
 ---------------------------------
@@ -124,10 +119,6 @@ Once you have started the webpack you will see the webpack-dashboard.
 Changes to file in the front end will automatically be built and shown in the webpack-dashboard. 
 Changes to the backend wont take effect and you will have to restart server.js to show changes.
 
----------------------------------
-
-## Update NPM Modules
-* ```npm update```
 
 ---------------------------------
 
