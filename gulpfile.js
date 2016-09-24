@@ -1,14 +1,16 @@
-var gulp = require('gulp'),
+'use strict';
+
+let gulp = require('gulp'),
     gulpWatch = require('gulp-watch'),
     gulpRename = require('gulp-rename'),
     del = require('del'),
     runSequence = require('run-sequence'),
-    webpack = require('webpack'),
-    webpackConfig = require('./webpack-ionic.config.js'),
     es = require('event-stream'),
     argv = process.argv,
     isRelease = false,
     shouldWatch = false;
+
+let tsBrowserSrc = 'tsconfig/browser.json';
 
 /**
  * Ionic Gulp tasks, for more information on each see
@@ -47,6 +49,7 @@ gulp.task('run:before', [shouldWatch ? 'watch' : 'build']);
 /*
  *
  */
+/*
 gulp.task('watch', [], function(done){
   var compiler = webpack(webpackConfig);
 
@@ -59,10 +62,11 @@ gulp.task('watch', [], function(done){
     done();
   });
 });
-
+*/
 /*
  *
  */
+/*
 gulp.task('build', [], function(done){
   var compiler = webpack(webpackConfig);
 
@@ -73,7 +77,7 @@ gulp.task('build', [], function(done){
     done();
   });
 });
-
+*/
 function fixConfigFile() {
   return es.map(function(file, cb) {
     var fileContent = file.contents.toString();
@@ -112,7 +116,7 @@ gulp.task('configs', function() {
 });
 
 gulp.task('tsconfig', function() {
-  let srcFile = 'tsconfig/browser.json';
+  let srcFile = tsBrowserSrc;
   if (argv.indexOf('--mobile') > -1) {
     srcFile = 'tsconfig/mobile.json';
   }

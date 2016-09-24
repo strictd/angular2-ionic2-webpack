@@ -127,8 +127,8 @@
     "start:raw": "npm run server:raw",
     "start:hmr": "npm run server -- --hot",
     "start": "npm run server",
+    "ionic:prod": "npm run ionic-serve:prod",
     "ionic": "npm run ionic-serve",
-    "ionic:dev": "npm run ionic-serve:dev",
     "watch": "webpack --watch --progress --profile",
     "build": "rimraf dist && webpack --progress --profile --bail",
     "server:raw": "webpack-dev-server --inline --port 8080 --host 0.0.0.0",
@@ -150,19 +150,23 @@
     "ci": "npm run e2e && npm run test",
     "docs": "typedoc --options typedoc.json src/browser/app/app.component.ts",
     "postinstall": "npm run webdriver-update",
-    "ionic-serve": "ionic serve",
-    "ionic-serve:dev": "ionic serve",
-    "ionic-build": "ionic-app-scripts build",
-    "ionic-build:dev": "ionic-app-scripts build --dev",
+
     "ionic-compress": "ionic-app-scripts compress",
     "ionic-copy": "ionic-app-scripts copy",
     "ionic-watch": "ionic-app-scripts watch",
-    "preionic-build": "npm run ionic-tsconfig",
-    "preionic-build:dev": "npm run ionic-tsconfig",
+
+    "ionic-serve:prod": "ionic serve",
+    "preionic-serve:prod": "npm run ionic-build:prod",
+    "ionic-build:prod": "ionic-app-scripts build",
+    "preionic-build:prod": "npm run ionic-tsconfig",
+
+    "ionic-serve": "ionic serve",
     "preionic-serve": "npm run ionic-build",
-    "preionic-serve:dev": "npm run ionic-build:dev",
-    "preemulate": "npm run ionic-build",
-    "predeploy": "npm run ionic-build",
-    "prerun": "npm run ionic-build"
+    "ionic-build": "ionic-app-scripts build --dev",
+    "preionic-build": "npm run ionic-tsconfig",
+    
+    "preemulate": "npm run ionic-build:prod",
+    "predeploy": "npm run ionic-build:prod",
+    "prerun": "npm run ionic-build:prod"
   }
 }
