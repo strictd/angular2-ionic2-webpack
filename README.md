@@ -160,11 +160,8 @@ angular2-ionic2-webpack/
  │   │
  │   │ 
  │   ├──services/               * services for retrieving api data from backend server
- │   │   ├──api/                  * sample api angular2 service
- │   │   │   └─api.ts               * Api Component
- │   │   │
- │   │   └──login-service/        * login service for angular2 auth-guard
- │   │       └─login-service.ts     * Api Component
+ │   │   ├──api.ts              * sample api angular2 service
+ │   │   └──login-service.ts    * login service for angular2 auth-guard
  │   │
  │   └──style/                  * global style libraries
  │       └──app.scss              * global app styles

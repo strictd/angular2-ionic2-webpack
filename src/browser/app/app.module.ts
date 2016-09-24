@@ -22,7 +22,7 @@ import { App }   from '../app/app.component';
 import { LoginComponent } from '../components/login/login';
 import { Home } from '../components/home/home';
 
-import { LoginService } from '../../services/login-service/login-service';
+import { LoginService } from '../../services/login-service';
 
 export let customHttpProvider: any = {
   provide: AuthHttp,

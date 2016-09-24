@@ -1,7 +1,7 @@
 import { Component, Input, Output, ViewChild, EventEmitter, Renderer, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../../../services/login-service/login-service';
+import { LoginService } from '../../../services/login-service';
 
 import { App } from '../../app/app.component';
 
