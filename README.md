@@ -188,7 +188,7 @@ We use the standard component based approach. We combine files in the following 
 angular2-ionic2-webpack/
  ├──backend/                    * Serverside Application, self-contained
  │   ├──db/                       * holds db connection files
- │   │   └──db_knex_strictd_mysql.js * default database connection library
+ │   │   └──db_knex_default_mysql.js * default database connection library
  │   │
  │   ├──modules/                  * backend modules, restful routes and functionality
  │   │   ├──login/                  * backend login module pack
@@ -300,12 +300,6 @@ angular2-ionic2-webpack/
  │   └──ionic.json                * tsconfig file adjusted for ionic2 compiles
  │
  │
- ├──webpack/                    * webpack config files, imported by webpack-ionic
- │   ├──webpack.common.js         * our common webpack config, imported by dev and prod
- │   ├──webpack.dev.js            * our development webpack config
- │   └──webpack.prod.js           * our production webpack config
- │
- │
  ├──.gitignore                  * ignore files for git repo
  ├──CHANGELOG.md                * list of changes made to repo
  ├──LICENSE                     * MIT License text
@@ -323,7 +317,6 @@ angular2-ionic2-webpack/
  ├──tsconfig.json               * config that webpack uses for typescript
  ├──tslint.json                 * typescript lint config
  ├──typedoc.json                * typescript documentation generator
- ├──webpack-ionic.config.js     * webpack mobile angular2 configuration file
  └──webpack.config.js           * webpack browser angular2 configuration file
 ```
 # Testing
