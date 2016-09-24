@@ -38,16 +38,24 @@ What you need to run this app:
 * If you are behind a version try ```npm update -g npm``` to update npm. 
 * For node go to [nodejs.org](https://nodejs.org/)
 
-## Install of NPM Modules, Required once 
+## Git clone repository, change to subdirectory
+```sh
+git clone https://github.com/strictd/angular2-ionic2-webpack.git
+cd angular2-ionic2-webpack
+```
+
+## Install NPM modules
+
 Using the command prompt enter:
 * from your cloned angular2-ionic2-webpack/ directory, install npm modules
 ```sh
 npm install
 ```
-* navigate to backend/ directory and install npm modules
+* navigate to backend/ directory, install npm modules, return to main directory
 ```sh
 cd backend/
 npm install
+cd ..
 ```
 
 ## Install of Ionic and Cordova
@@ -66,37 +74,69 @@ ionic state restore
 
 ---------------------------------
 
+# Node Server Setup
+### Copy backend/ sample.env to .env and edit global environment variables in .env
+* Mac OSX
+```sh
+cp backend/sample.env backend/.env
+vi backend/.env
+```
+* Windows
+```sh
+copy backend/sample.env backend/.env
+notepad backend/.env
+```
+
 
 # Node Server Startup
-* Copy ```backend/sample.env``` and create ```.env``` inside ```backend/``` at ```backend/.env``` and fixup any environment variables.
-To run backend navigate to /backend and run the command:
-```node server.js```
+* Run backend/ nodejs server
+```sh
+node backend/server.js
+```
 
 
 ---------------------------------
 
+# Config Setting Utility
+Setting       | Default
+------------- | -------------
+api server    | localhost:3080
+debugging     | On
+### Reset Defaults
+```sh
+gulp configs
+```
+
+### Additional gulp config switches
+* --release
+
+> Sets compile settings for production
+```sh
+gulp configs --release
+```
+
+* --host <api url>
+
+> Sets Madame Server / Socket Host in config.app.ts
+```sh
+gulp configs --host localhost:3080
+```
+
+---------------------------------
 
 # Angular2 Startup
-```npm start```
-
-go to [http://localhost:8080](http://localhost:8080) in your browser.
+```sh
+npm start
+```
+* go to [http://localhost:8080](http://localhost:8080) in your browser.
 
 
 # Ionic2 Startup
-```npm run ionic-serve```
-go to [http://localhost:8100](http://localhost:8100) in your browser.
+```sh
+npm run ionic
+```
+* [http://localhost:8100](http://localhost:8100) will automatically open in your default browser.
 
-
-## Config Updates
-Set defaults, localhost:3080 for backend services
-```gulp configs```
-
-### Additional gulp config switches
---release
-Sets debugging to false
-
---host localhost:3080
-Sets Madame Server / Socket Host
 
 ---------------------------------
 
@@ -104,11 +144,11 @@ Sets Madame Server / Socket Host
 ### Here are all the steps for starting the project
 Basic commands to run your project are:
 
-1. start backend: /backend ```node server.js``` 
+1. start backend: backend/ ```node server.js``` 
 
 2. start angular: ```npm start```
 
-3. start ionic: ```npm run ionic serve```
+3. start ionic: ```npm run ionic```
 
 Then navigate to: 
 Webapp: ```localhost:8080```
