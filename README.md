@@ -301,6 +301,7 @@ angular2-ionic2-webpack/
  │
  │
  ├──.gitignore                  * ignore files for git repo
+ ├──.htaccess                   * mod-rewrite instructions for Apache 
  ├──CHANGELOG.md                * list of changes made to repo
  ├──LICENSE                     * MIT License text
  ├──README.md                   * this file
@@ -317,6 +318,7 @@ angular2-ionic2-webpack/
  ├──tsconfig.json               * config that webpack uses for typescript
  ├──tslint.json                 * typescript lint config
  ├──typedoc.json                * typescript documentation generator
+ ├──web.config                  * IIS url rewrite instructions [http://www.iis.net/downloads/microsoft/url-rewrite](http://www.iis.net/downloads/microsoft/url-rewrite)
  └──webpack.config.js           * webpack browser angular2 configuration file
 ```
 # Testing
