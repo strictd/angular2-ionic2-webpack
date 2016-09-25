@@ -233,7 +233,11 @@ module.exports = function makeWebpackConfig() {
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin([{
-        from: root('src','assets')
+        from: root('src','browser','assets')
+      }, {
+        from: root('.htaccess')
+      }, {
+        from: root('web.config')
       }])
     );
   }

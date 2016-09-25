@@ -307,7 +307,7 @@ angular2-ionic2-webpack/
  ├──README.md                   * this file
  ├──config.app.ts               * angular2 @Injectable ConfigApp, provides global config options
  ├──config.xml                  * ionic2 project description file
- ├──gulpfile.js                 * worker to modify configs and initial ionic2 webpack
+ ├──gulpfile.js                 * worker to modify configs, hooks for ionic
  ├──ionic-copy.config.js        * ionic-app-scripts copy updated config file
  ├──ionic.config.json           * ionic2 configuration
  ├──ionic.project               * ionic2 project info
@@ -318,7 +318,7 @@ angular2-ionic2-webpack/
  ├──tsconfig.json               * config that webpack uses for typescript
  ├──tslint.json                 * typescript lint config
  ├──typedoc.json                * typescript documentation generator
- ├──web.config                  * IIS url rewrite instructions [http://www.iis.net/downloads/microsoft/url-rewrite](http://www.iis.net/downloads/microsoft/url-rewrite)
+ ├──web.config                  * IIS url rewrite instructions (http://www.iis.net/downloads/microsoft/url-rewrite)
  └──webpack.config.js           * webpack browser angular2 configuration file
 ```
 # Testing
