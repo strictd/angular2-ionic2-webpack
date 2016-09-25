@@ -45,7 +45,5 @@ public/__build__/**
 
 build/
 
-.env
-
 backend.js
 backend.js.map

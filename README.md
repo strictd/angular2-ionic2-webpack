@@ -1,7 +1,8 @@
 This repo is all you need to develop web and mobile applications. We found the original repo was difficult and confusing when it came to adding support for more platforms. This structure will make it easier for you to reuse code and stay organized. 
 
 # Table of Contents
-
+* [Prerequisites](#prerequisites)
+* [Quick Start](#quick-start)
 * [How to Initialize App](#how-to-initialize-app)
     * [Setup Dependencies](#setup-dependencies)
     * [Node Server Startup](#node-server-startup)
@@ -18,25 +19,65 @@ This repo is all you need to develop web and mobile applications. We found the o
 
 ---------------------------------
 
-### Beginners
-If you are new to programming and are using a Windows pc that is lower then Windows 10, it may be easier to download a bash system. 
-Downloading git will allow you to do bash commands and also clone the repository through commands like ```git clone https://github.com/strictd/angular2-ionic2-webpack``` \
-[Download git](https://git-scm.com/downloads) \
-Once you have git downloaded you should be able to open git bash and run bash commands. 
+### Prerequisites
+* `git` [Download git](https://git-scm.com/downloads)
+* `node` and `npm` ([Nodejs.org/download/current](https://nodejs.org/en/download/current/) includes npm 3.10.3)
+* `ionic-cli` and `cordova`
 
+
+### Quick Start
+**Make sure you have Node version >= 6.0 and NPM >= 3**
+> Clone this Repo, install frontend and backend applications with npm
+> Start backend api service in one window
+> Start frontend dev-server in separate window
+
+```bash
+# clone this repo
+# --depth 1 removes all but one .git commit history
+git clone --depth 1 https://github.com/strictd/angular2-ionic2-webpack.git
+
+# change directory to this repo
+cd angular2-ionic2-webpack
+
+# install the frontend repo with npm
+npm install
+
+# change to backend repo
+cd backend
+
+# install the backend repo with npm
+npm install
+
+# start backend node service
+node server.js
+
+# if you're in China use cnpm
+# https://github.com/cnpm/cnpm
+```
+
+> Open second cmd window
+
+```bash
+# change directory to this repo
+cd angular2-ionic2-webpack
+
+# start the server
+npm start
+```
+go to [http://0.0.0.0:8080](http://0.0.0.0:8080) or [http://localhost:8080](http://localhost:8080) in your browser
 
 
 # How to Initialize App
 
-
 ## Setup Dependencies
 
-What you need to run this app:
-* `node` and `npm` ([Nodejs.org/download](https://nodejs.org/en/download/) includes node 2.15.6 but you will need to update it to v6.x.x+)
+> What you need to run this app:
 * Ensure you're running Node (`v6.x.x`+) and NPM (`3.x.x`+)
 * Check versions with ```node -v``` and ```npm -v```
 * If you are behind a version try ```npm update -g npm``` to update npm. 
 * For node go to [nodejs.org](https://nodejs.org/)
+* Ionic-CLI and Cordova, install using ```npm install -g ionic cordova```
+
 
 ## Git clone repository, change to subdirectory
 ```sh
