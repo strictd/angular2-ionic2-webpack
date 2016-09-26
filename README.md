@@ -1,34 +1,18 @@
 This repo is all you need to develop web and mobile applications. We found the original repo was difficult and confusing when it came to adding support for more platforms. This structure will make it easier for you to reuse code and stay organized. 
 
-# Table of Contents
-* [Prerequisites](#prerequisites)
-* [Quick Start](#quick-start)
-* [How to Initialize App](#how-to-initialize-app)
-    * [Setup Dependencies](#setup-dependencies)
-    * [Node Server Startup](#node-server-startup)
-    * [Angular2 Startup](#angular2-startup)
-    * [Ionic2 Startup](#ionic2-startup)
-    * [Development Startup](#development-setup)
-    * [Build Project](#build-project)
-    * [Documentation](#documentation)
-    * [File Structure](#file-structure)
-* [Testing](#testing)
-* [Frequently asked questions](#faq)
-* [TypeScript](#typescript)
-* [License](#license)
 
----------------------------------
+## Quick Start
 
 ### Prerequisites
 * `git` [Download git](https://git-scm.com/downloads)
 * `node` and `npm` ([Nodejs.org/download/current](https://nodejs.org/en/download/current/) includes npm 3.10.3)
 * `ionic-cli` and `cordova`
-
-
-### Quick Start
 **Make sure you have Node version >= 6.0 and NPM >= 3**
+
 > Clone this Repo, install frontend and backend applications with npm
+
 > Start backend api service in one window
+
 > Start frontend dev-server in separate window
 
 ```bash
@@ -66,6 +50,24 @@ npm start
 ```
 go to [http://0.0.0.0:8080](http://0.0.0.0:8080) or [http://localhost:8080](http://localhost:8080) in your browser
 
+
+
+# Table of Contents
+* [How to Initialize App](#how-to-initialize-app)
+    * [Setup Dependencies](#setup-dependencies)
+    * [Node Server Startup](#node-server-startup)
+    * [Angular2 Startup](#angular2-startup)
+    * [Ionic2 Startup](#ionic2-startup)
+    * [Development Startup](#development-setup)
+    * [Build Project](#build-project)
+    * [Documentation](#documentation)
+    * [File Structure](#file-structure)
+* [Testing](#testing)
+* [Frequently asked questions](#faq)
+* [TypeScript](#typescript)
+* [License](#license)
+
+---------------------------------
 
 # How to Initialize App
 
