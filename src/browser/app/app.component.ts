@@ -12,6 +12,7 @@ import 'rxjs/add/operator/share';
 
 import '../../style/app.scss';
 
+import { LoginService } from '../../services/login-service';
 import { ConfigApp } from '../../../config.app';
 
 /*
@@ -64,6 +65,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   jwt: JwtHelper;
   p: RolePermissions;
+  login: LoginService;
   applicationRef: ApplicationRef;
   cdr: ChangeDetectorRef;
   service: MadameService;
@@ -84,6 +86,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     _cdr: ChangeDetectorRef,
     _jwt: JwtHelper,
     _p: RolePermissions,
+    _login: LoginService,
     _service: MadameService,
     _router: Router
   ) {
@@ -92,6 +95,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     this.p = _p;
     this.service = _service;
     this.router = _router;
+    this.login = _login;
 
     _service.setServer('main', _config.madameService());
     // this.socket.setServer('main', _config.madameSocket());
@@ -128,6 +132,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       }
     });
     this.localAppLogout = App._loggedOutObservable.subscribe((_t: any) => {
+      this.login.doLogoff();
       _config.setProfile({});
       this.p.resetPermissions();
 

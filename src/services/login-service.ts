@@ -26,5 +26,9 @@ export class LoginService {
     return sessCreate;
   }
 
+  doLogoff() {
+    localStorage.removeItem('jwt');
+  }
+
 
 }

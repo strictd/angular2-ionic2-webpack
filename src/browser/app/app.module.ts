@@ -14,7 +14,7 @@ import { AuthGuard } from '../auth-guard';
 
 import { SharedModule } from '../modules/shared.module';
 
-import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
+import { AuthConfig, AuthHttp, JwtHelper, provideAuth } from 'angular2-jwt';
 
 import { routing } from './app.routing';
 
@@ -23,19 +23,6 @@ import { LoginComponent } from '../components/login/login';
 import { Home } from '../components/home/home';
 
 import { LoginService } from '../../services/login-service';
-
-export let customHttpProvider: any = {
-  provide: AuthHttp,
-  useFactory: (http: any) => {
-    let config: AuthConfig = new AuthConfig({
-      noJwtError: true,
-      tokenName: 'jwt',
-      tokenGetter: () => localStorage.getItem('jwt')
-    });
-    return new AuthHttp(config, http);
-  },
-  deps: [Http]
-};
 
 @NgModule({
   imports: [
@@ -53,7 +40,15 @@ export let customHttpProvider: any = {
     Home
   ],
   providers: [
-    customHttpProvider,
+    AuthHttp,
+    provideAuth({
+      headerName: 'Authorization',
+      headerPrefix: 'bearer',
+      tokenName: 'jwt',
+      tokenGetter: (() => localStorage.getItem('jwt')),
+      // globalHeaders: [{ 'Content-Type': 'application/json' }],
+      noJwtError: true
+    }),
     ConfigApp,
     JwtHelper,
     RolePermissions,
