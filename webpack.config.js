@@ -35,16 +35,13 @@ module.exports = function makeWebpackConfig() {
    */
   if (isProd) {
     config.devtool = 'source-map';
-  } 
+  }
   else if (isTest) {
     config.devtool = 'inline-source-map';
   }
   else {
     config.devtool = 'eval-source-map';
   }
-
-  // add debug messages
-  config.debug = !isProd || !isTest;
 
   /**
    * Entry
@@ -72,20 +69,15 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#resolve
    */
   config.resolve = {
-    cache: !isTest,
-    root: root(),
     // only discover files that have those extensions
-    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
-    alias: {
-      'app': 'src/browser'
-    }
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
   };
 
   var atlOptions = '';
   if (isTest && !isTestWatch) {
     // awesome-typescript-loader needs to output inlineSourceMap for code coverage to work with source maps.
     atlOptions = 'inlineSourceMap=true&sourceMap=false';
-  } 
+  }
 
   /**
    * Loaders
@@ -94,8 +86,7 @@ module.exports = function makeWebpackConfig() {
    * This handles most of the magic responsible for converting modules
    */
   config.module = {
-    preLoaders: isTest ? [] : [{test: /\.ts$/, loader: 'tslint'}],
-    loaders: [
+    rules: [
       // Support for .ts files.
       {
         test: /\.ts$/,
@@ -117,7 +108,7 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.css$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss']})
       },
       // all css required in src/app files will be merged in js files
       {test: /\.css$/, include: root('src', 'browser'), loader: 'raw!postcss'},
@@ -128,7 +119,7 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.scss$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass')
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss', 'sass']})
       },
       // all css required in src/app files will be merged in js files
       {test: /\.scss$/, exclude: root('src', 'style'), loader: 'raw!postcss!sass'},
@@ -139,7 +130,8 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.sass$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?indentedSyntax')
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss', 'sass']})
+        //loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?indentedSyntax')
       },
       // all css required in src/app files will be merged in js files
       {test: /\.sass$/, exclude: root('src', 'style'), loader: 'raw!postcss!sass?indentedSyntax'},
@@ -147,18 +139,27 @@ module.exports = function makeWebpackConfig() {
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw'}
-    ],
-    postLoaders: []
+      {test: /\.html$/, loader: 'raw',  exclude: root('src', 'browser', 'assets')}
+    ]
   };
 
   if (isTest && !isTestWatch) {
     // instrument only testing sources with Istanbul, covers ts files
-    config.module.postLoaders.push({
+    config.module.rules.push({
       test: /\.ts$/,
+      enforce: 'post',
       include: path.resolve('src'),
       loader: 'istanbul-instrumenter-loader',
       exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
+    });
+  }
+
+  if (!isTest || !isTestWatch) {
+    // tslint support
+    config.module.rules.push({
+      test: /\.ts$/,
+      enforce: 'pre',
+      loader: 'tslint'
     });
   }
 
@@ -176,8 +177,48 @@ module.exports = function makeWebpackConfig() {
         ENV: JSON.stringify(ENV)
       }
     }),
+
     new webpack.ProvidePlugin({
       io: 'socket.io-client'
+    }),
+
+    // Workaround needed for angular 2 angular/angular#11580
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      root('./src') // location of your src
+    ),
+
+    // Tslint configuration for webpack 2
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        /**
+         * Apply the tslint loader as pre/postLoader
+         * Reference: https://github.com/wbuchwalter/tslint-loader
+         */
+        tslint: {
+          emitErrors: false,
+          failOnHint: false
+        },
+        /**
+         * Sass
+         * Reference: https://github.com/jtangelder/sass-loader
+         * Transforms .scss files to .css
+         */
+        sassLoader: {
+          //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
+        },
+        /**
+         * PostCSS
+         * Reference: https://github.com/postcss/autoprefixer-core
+         * Add vendor prefixes to your css
+         */
+        postcss: [
+          autoprefixer({
+            browsers: ['last 2 version']
+          })
+        ]
+      }
     })
   ];
 
@@ -185,7 +226,7 @@ module.exports = function makeWebpackConfig() {
     config.plugins.push(new DashboardPlugin());
   }
 
-  if (!isTest) {
+  if (!isTest || !isTestWatch) {
     config.plugins.push(
       new ForkCheckerPlugin(),
 
@@ -206,7 +247,7 @@ module.exports = function makeWebpackConfig() {
       // Extract css files
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
       // Disabled when in test mode or not in build mode
-      new ExtractTextPlugin('css/[name].[hash].css', {disable: !isProd})
+      new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !isProd})
     );
   }
 
@@ -217,18 +258,13 @@ module.exports = function makeWebpackConfig() {
       // Only emit files when there are no errors
       new webpack.NoErrorsPlugin(),
 
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      // Dedupe modules in the output
-      new webpack.optimize.DedupePlugin(),
+      // // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
+      // // Dedupe modules in the output
+      // new webpack.optimize.DedupePlugin(),
 
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
-      new webpack.optimize.UglifyJsPlugin({
-        beautify: false, //prod
-        mangle: { screw_ie8 : true, keep_fnames: true }, //prod
-        compress: { screw_ie8: true }, //prod
-        comments: false //prod
-      }),
+      new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
 
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
@@ -241,35 +277,6 @@ module.exports = function makeWebpackConfig() {
       }])
     );
   }
-
-  /**
-   * PostCSS
-   * Reference: https://github.com/postcss/autoprefixer-core
-   * Add vendor prefixes to your css
-   */
-  config.postcss = [
-    autoprefixer({
-      browsers: ['last 2 version']
-    })
-  ];
-
-  /**
-   * Sass
-   * Reference: https://github.com/jtangelder/sass-loader
-   * Transforms .scss files to .css
-   */
-  config.sassLoader = {
-    //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
-  };
-
-  /**
-   * Apply the tslint loader as pre/postLoader
-   * Reference: https://github.com/wbuchwalter/tslint-loader
-   */
-  config.tslint = {
-    emitErrors: false,
-    failOnHint: false
-  };
 
   /**
    * Dev server configuration
