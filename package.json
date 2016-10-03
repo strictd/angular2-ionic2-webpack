@@ -48,9 +48,13 @@
     "codelyzer": "0.0.28",
     "copy-webpack-plugin": "^3.0.0",
     "css-loader": "^0.25.0",
+<<<<<<< HEAD
     "del": "2.2.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "event-stream": "^3.3.4",
+=======
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+>>>>>>> b9e9c59... chore: update to webpack 2
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.0",
     "gulp": "3.9.1",
@@ -92,6 +96,7 @@
     "webpack": "^2.1.0-beta.25",
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^2.1.0-beta.8"
+<<<<<<< HEAD
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
@@ -168,5 +173,7 @@
     "preemulate": "npm run ionic-build:prod",
     "predeploy": "npm run ionic-build:prod",
     "prerun": "npm run ionic-build:prod"
+=======
+>>>>>>> b9e9c59... chore: update to webpack 2
   }
 }
