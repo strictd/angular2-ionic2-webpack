@@ -1,28 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "noEmitHelpers": true   
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5"
   },
-  "filesGlob": [
-    "**/*.ts",
-    "!node_modules/**/*"
-  ],
   "exclude": [
     "node_modules",
-    "src/mobile",
-    "src/desktop"
+    "src/browser",
+    "src/desktop"    
   ],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
-  },
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
   }
 }
