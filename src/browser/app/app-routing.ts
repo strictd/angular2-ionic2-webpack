@@ -1,11 +1,15 @@
+import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../auth-guard';
-import { LoginComponent } from '../components/login/login';
+import { Login } from '../components/login/login';
 import { Home } from '../components/home/home';
+import { SecureModIndex } from
+    '../modules/secure-mod/secure-mod-index/secure-mod-index';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: Home },
+  { path: 'login', component: Login },
 
 /*
   // Admin Sections
@@ -17,14 +21,14 @@ const routes: Routes = [
     })
   }
 */
-  { path: 'home',
+  { path: 'secure',
     children: [
-      // Homepage
-      { path: '', component: Home, canActivate: [AuthGuard] }
+      // Secure Info
+      { path: '', component: SecureModIndex, canActivate: [AuthGuard] }
     ]
   }
 
 ];
 
 
-export const routing = RouterModule.forRoot(routes);
+export const appRouting: ModuleWithProviders = RouterModule.forRoot(routes);

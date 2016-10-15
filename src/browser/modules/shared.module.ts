@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { SetFocusDirective } from '@strictd/ng2-set-focus/set-focus';
 
-import { ModalModule } from 'ng2-modal';
+import { ModalModule } from '@strictd/ng2-modal';
 
 import { HeadersModule } from './headers/headers.module';
 

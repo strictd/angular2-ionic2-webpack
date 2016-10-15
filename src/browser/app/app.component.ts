@@ -1,11 +1,8 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ApplicationRef,
     ChangeDetectorRef,  } from '@angular/core';
-import { Router,  } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { RolePermissions } from '@strictd/ng2-role-permissions/role-permissions';
 import { MadameService } from '@strictd/ng2-madame/madame-service';
-
-import { JwtHelper } from 'angular2-jwt';
 
 import { Observable, Observer, Subscription } from 'rxjs';
 import 'rxjs/add/operator/share';
@@ -22,10 +19,12 @@ import { ConfigApp } from '../../../config.app';
 
 @Component({
   selector: 'app-starter',
-  template: `<modal #ModalLogin
+  template: `<modal style="z-index: 2000;" #ModalLogin
       [hideCloseButton]="false"
       [closeOnEscape]="true"
       [closeOnOutsideClick]="true"
+      [showHeader]="false"
+      [showFooter]="false"
   >
     <modal-content>
       <login-component #Login [isModal]="true"></login-component>
@@ -33,8 +32,7 @@ import { ConfigApp } from '../../../config.app';
   </modal>
 
   <div *ngIf="needMoreAuth" (click)="service.reauthMadame()" class="top_auth_window">Needs Authentication!</div>
-  <router-outlet></router-outlet>`,
-  styles: [''],
+  <router-outlet></router-outlet>`
 })
 
 export class App implements OnInit, AfterViewInit, OnDestroy {
@@ -63,8 +61,6 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   runningLogin: boolean = false;
 
-  jwt: JwtHelper;
-  p: RolePermissions;
   login: LoginService;
   applicationRef: ApplicationRef;
   cdr: ChangeDetectorRef;
@@ -84,15 +80,11 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     _config: ConfigApp,
     _cdr: ChangeDetectorRef,
-    _jwt: JwtHelper,
-    _p: RolePermissions,
     _login: LoginService,
     _service: MadameService,
     _router: Router
   ) {
     this.cdr = _cdr;
-    this.jwt = _jwt;
-    this.p = _p;
     this.service = _service;
     this.router = _router;
     this.login = _login;
@@ -102,13 +94,10 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     _config.setStateParams();
 
-    let jwtDecoded = localStorage.getItem('jwt') || '';
-    if (jwtDecoded) { _config.setProfile(this.jwt.decodeToken(jwtDecoded)); }
-
     // Fetches Auth hook for authorizing and resending stashed que
     this.localMadameStash = _service.getAuthHook().subscribe(
       (resp: boolean) => this.processNeedMoreAuthSub(resp),
-      (err) => console.log('My Err', err)
+      (err) => alert(err)
     );
 
     // Set madames cursor wait when running;
@@ -117,36 +106,25 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     );
 
     // Must have at least one subscriber, otherwise next() fails
-    this.localAppLogin = App._loggedInObservable.subscribe((data: string) => {
-      let decoded = this.jwt.decodeToken(data);
+    this.localAppLogin = App._loggedInObservable.subscribe(
+      (data: string) => _config.token = data
+    );
 
-      if (!!decoded) { _config.setProfile(decoded); }
-      if (!!decoded && typeof decoded.permission !== 'undefined' &&
-          typeof decoded.permission.permissions !== 'undefined') {
-
-        this.p.savePermissions();
-        // let permSet = this.p.setPermissions(decoded.permission.permissions);
-        // RolePermissions._permissionObserver.next(permSet);
-        // this.p.fetchComponentPermission(App._registeredComponents);
-        // this.socket.openSocket('main', this.jwtToken);
-      }
-    });
     this.localAppLogout = App._loggedOutObservable.subscribe((_t: any) => {
       this.login.doLogoff();
-      _config.setProfile({});
-      this.p.resetPermissions();
-
+      _config.token = '';
       // Reset to root page
       this.router.navigateByUrl('/');
     });
 
     this.localForceLogin = App._forceLoginObservable.subscribe(
-      (authGuardObserver: Observer<boolean>) => {
+      (continueObserver: Observer<boolean>) => {
 
         this.Login.resizeForModalLogin();
-        this.ModalLogin.open(authGuardObserver);
-        let closeSub = this.ModalLogin.onClose.subscribe((resp) => {
-          authGuardObserver.complete();
+        this.ModalLogin.open(continueObserver);
+        const closeSub = this.ModalLogin.onClose.subscribe((resp) => {
+          continueObserver.complete();
+          this.cdr.detectChanges();
           closeSub.unsubscribe();
         });
       }
@@ -163,18 +141,19 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // Modal Login window open default
     this.ModalLogin.onOpen.subscribe(args => {
-      let _ob = args[0];
+      const _ob = args[0];
+      let continueBool = false;
 
-      let loginSub = this.Login.onSubmit.subscribe((res) => {
-        _ob.next(res);
-        _ob.complete();
+      const loginSub = this.Login.onSubmit.subscribe((res) => {
+        continueBool = res;
+
         this.ModalLogin.close(res);
         this.cdr.detectChanges();
       });
 
 
       // Routine when modal window closes
-      let closeSub = this.ModalLogin.onClose.subscribe(successfulLogin => {
+      const closeSub = this.ModalLogin.onClose.subscribe(successfulLogin => {
         this.Login.returnToOriginalSize(); // Reset original window size,
                                            // may have expanded to fit login
 
@@ -185,7 +164,8 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
           this.processNeedMoreAuthSub(true);
         }
 
-        _ob.next('closed');
+        this.needMoreAuth = !continueBool;
+        _ob.next(continueBool);
         _ob.complete();
 
         // Cleanup subscriptions from modal window
@@ -209,10 +189,6 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     App._loggedOutObserver.dispose();
     App._forceLoginObserver.dispose();
 
-  }
-
-  logout() {
-    App._loggedOutObserver.next(this);
   }
 
   processNeedMoreAuthSub(needsMore: boolean) {

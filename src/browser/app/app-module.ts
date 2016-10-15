@@ -2,25 +2,25 @@ import { NgModule, ApplicationRef } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 import { MadameService } from '@strictd/ng2-madame/madame-service';
-import { RolePermissions } from '@strictd/ng2-role-permissions/role-permissions';
 
 import { ConfigApp } from '../../../config.app';
 import { AuthGuard } from '../auth-guard';
 
 import { SharedModule } from '../modules/shared.module';
 
-import { AuthConfig, AuthHttp, JwtHelper, provideAuth } from 'angular2-jwt';
+import { AuthHttp, JwtHelper, provideAuth } from 'angular2-jwt';
 
-import { routing } from './app.routing';
+import { appRouting } from './app-routing';
 
 import { App }   from '../app/app.component';
-import { LoginComponent } from '../components/login/login';
+import { Login } from '../components/login/login';
 import { Home } from '../components/home/home';
+import { SecureModModule } from '../modules/secure-mod/secure-mod-module';
 
 import { LoginService } from '../../services/login-service';
 
@@ -32,11 +32,12 @@ import { LoginService } from '../../services/login-service';
     RouterModule,
 
     SharedModule,
-    routing
+    SecureModModule,
+    appRouting
   ],
   declarations: [
     App,
-    LoginComponent,
+    Login,
     Home
   ],
   providers: [
@@ -51,7 +52,6 @@ import { LoginService } from '../../services/login-service';
     }),
     ConfigApp,
     JwtHelper,
-    RolePermissions,
     MadameService,
     LoginService,
     AuthGuard

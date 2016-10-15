@@ -8,7 +8,6 @@ import { App } from '../../app/app.component';
 export interface LoginForm {
   login: string;
   password: string;
-  remember_me?: boolean;
 }
 
 @Component({
@@ -16,10 +15,10 @@ export interface LoginForm {
   templateUrl: './login.html',
   styleUrls: [ './login.css' ]
 })
-export class LoginComponent {
+export class Login {
 
   @Input() isModal = false;
-  @Output() onSubmit = new EventEmitter(false); // modal login windows subscribes to close window
+  @Output() onSubmit = new EventEmitter<any>(); // modal login windows subscribes to close window
   @ViewChild('password') elePassword: ElementRef; // allows focus setting for enter key from login to password
 
   login: LoginService;
@@ -49,14 +48,16 @@ export class LoginComponent {
       this.renderer.invokeElementMethod(this.elePassword.nativeElement, 'focus', []);
     }
   }
-  submitLogin(forwardRoute = 'home') {
+  submitLogin(forwardRoute = '/') {
     this.runningLogin = true;
     this.login.doLogin(this.loginData.login, this.loginData.password, App._registeredComponents.join(','))
     .subscribe(
       resp => {
+
         this.cleanForm();
 
         let dataSet = resp.json();
+
         if (typeof dataSet.id_token !== 'undefined') {
           // let jwtToken = this.jwt.parseJWT(dataSet.id_token);
           App._loggedInObserver.next(dataSet.id_token);

@@ -286,7 +286,7 @@ module.exports = function makeWebpackConfig() {
   config.devServer = {
     contentBase: './src/browser/assets',
     historyApiFallback: true,
-    quiet: true,
+//    quiet: true, // sets quiet mode in console output
     stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
   };
 

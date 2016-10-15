@@ -14,7 +14,7 @@ export class LoginService {
   }
 
   doLogin(username, password, component_ids = '1') {
-    let sessCreate = this.madame.post('sessions/create', {username, password, component_ids}).share();
+    const sessCreate = this.madame.post('sessions/create', {username, password, component_ids}).share();
 
     sessCreate.subscribe(resp => {
       if (resp.status === 200 || resp.status === 201) {

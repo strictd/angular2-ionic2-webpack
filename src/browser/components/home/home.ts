@@ -1,9 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
-import { JwtHelper } from 'angular2-jwt';
-import { RolePermissions } from '@strictd/ng2-role-permissions/role-permissions';
-
-import { App } from '../../app/app.component';
+import { ConfigApp } from '../../../../config.app';
 
 @Component({
   selector: 'home-page',
@@ -15,24 +12,16 @@ import { App } from '../../app/app.component';
 export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   // router: Router;
-  jwt: JwtHelper;
-
-  jwtString: string;
-  profile: any;
-  observePermissions: any;
+  config: ConfigApp;
 
 
-  constructor(_jwt: JwtHelper) {
+  constructor(_config: ConfigApp) {
     // if (!_jwt.fetchJWT()) { this._router.navigate(['Login']); } // Force Page to Login
     // this.router = _router;
-    this.jwt = _jwt;
-
-    this.observePermissions = RolePermissions._permissionObserable.subscribe((data) => { console.log('Got Permissions!', data); });
+    this.config = _config;
   }
 
   ngOnInit() {
-    this.jwtString = localStorage.getItem('jwt');
-    this.profile = this.jwt.decodeToken(this.jwtString);
   }
 
   ngAfterViewInit() {
@@ -40,11 +29,11 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.observePermissions.unsubscribe();
+
   }
 
   logout() {
-    App._loggedOutObserver.next(this);
+    // App._loggedOutObserver.next(this);
   }
 
 }

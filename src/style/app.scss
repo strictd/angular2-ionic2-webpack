@@ -103,3 +103,19 @@ a:active {
   from { -webkit-transform: rotate(0deg); }
   to { -webkit-transform: rotate(360deg); }
 }
+
+.navbar-component {
+  background-color: #d0d0d0;
+  color: #a0a0a0;
+  padding: 0px 4px;
+}
+
+.navbar-component div {
+  float: left;
+  font-size: x-small;
+  font-weight: 800;
+  font-family: verdana, arial;
+  padding: 0px 6px;
+  color: -webkit-link;
+  cursor: pointer;
+}
