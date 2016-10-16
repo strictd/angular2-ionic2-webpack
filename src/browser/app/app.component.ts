@@ -89,6 +89,9 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     this.router = _router;
     this.login = _login;
 
+    const jwtEncoded = localStorage.getItem('jwt') || '';
+    _config.token = jwtEncoded;
+
     _service.setServer('main', _config.madameService());
     // this.socket.setServer('main', _config.madameSocket());
 
@@ -107,12 +110,16 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     // Must have at least one subscriber, otherwise next() fails
     this.localAppLogin = App._loggedInObservable.subscribe(
-      (data: string) => _config.token = data
+      (token: string) => {
+        localStorage.setItem('jwt', token);
+        _config.token = token;
+      }
     );
 
     this.localAppLogout = App._loggedOutObservable.subscribe((_t: any) => {
-      this.login.doLogoff();
+      localStorage.removeItem('jwt');
       _config.token = '';
+      
       // Reset to root page
       this.router.navigateByUrl('/');
     });

@@ -58,11 +58,14 @@ export class Login {
 
         let dataSet = resp.json();
 
-        if (typeof dataSet.id_token !== 'undefined') {
-          // let jwtToken = this.jwt.parseJWT(dataSet.id_token);
+        if ((resp.status === 200 || resp.status === 201) && 
+            typeof dataSet.id_token !== 'undefined') {
+
           App._loggedInObserver.next(dataSet.id_token);
-        } else {
+        } else if (resp.status === 200 || resp.status === 201) {
           alert('No Token Returned, Please Refresh. Sorry!');
+        } else {
+          alert('Bad Request! Refresh and try again.')
         }
 
 

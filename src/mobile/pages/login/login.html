@@ -1,0 +1,38 @@
+<ion-navbar *navbar>
+  <ion-title>Login</ion-title>
+</ion-navbar>
+
+<ion-content class="login">
+  <ion-row>
+    <ion-col center text-center class="logo">
+      <img src="assets/img/logo.png" />
+      <br />Strict Development, Inc.
+      <br />Login: admin - Pass: admin<br />Must have backend/ node service running
+    </ion-col>
+  </ion-row>  
+  
+  <form (ngSubmit)="submitLogin()">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" name="username" [(ngModel)]="loginData.login"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="loginData.password"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col center text-center>
+        <button block type="submit">Login</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <ion-row *ngIf="error">
+    <ion-col center text-center>
+      {{ error._body }}
+    </ion-col>
+  </ion-row>
+
+</ion-content>

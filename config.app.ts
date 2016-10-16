@@ -90,9 +90,6 @@ export class ConfigApp {
 
   constructor(_jwt: JwtHelper) {
     this.jwt = _jwt;
-
-    const jwtEncoded = localStorage.getItem('jwt') || '';
-    this.token = jwtEncoded;
   }
 
   madameService(): string { return this._madameService; }
@@ -119,9 +116,9 @@ export class ConfigApp {
 
     if (value && !this.jwt.isTokenExpired(value)) {
       this.profile = <ProfileJWT>this.jwt.decodeToken(value);
+      console.log(this.profile);
       this._isLoggedIn = true;
     } else { this._isLoggedIn = false; }
-
   }
 
 

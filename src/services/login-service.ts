@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import { MadameService } from '@strictd/ng2-madame/madame-service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LoginService {
@@ -13,22 +13,8 @@ export class LoginService {
     this.madame = _madame;
   }
 
-  doLogin(username, password, component_ids = '1') {
-    const sessCreate = this.madame.post('sessions/create', {username, password, component_ids}).share();
-
-    sessCreate.subscribe(resp => {
-      if (resp.status === 200 || resp.status === 201) {
-        localStorage.setItem('jwt', resp.json().id_token);
-      }
-    },
-    err => {});
-
-    return sessCreate;
+  doLogin(username, password, component_ids = '1'): Observable<any> {
+    return this.madame.post('sessions/create', {username, password, component_ids}).share();
   }
-
-  doLogoff() {
-    localStorage.removeItem('jwt');
-  }
-
 
 }
