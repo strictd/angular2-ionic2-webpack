@@ -6,8 +6,8 @@
   <ion-row>
     <ion-col center text-center class="logo">
       <img src="assets/img/logo.png" />
-      <br />Strict Development, Inc.
-      <br />Login: admin - Pass: admin<br />Must have backend/ node service running
+      <h2>Strict Development, Inc.</h2>
+      <p>Login: admin - Pass: admin<br />Must have backend/ node service running</p>
     </ion-col>
   </ion-row>  
   
@@ -31,7 +31,7 @@
 
   <ion-row *ngIf="error">
     <ion-col center text-center>
-      {{ error._body }}
+      <p>{{ error._body }}</p>
     </ion-col>
   </ion-row>
 

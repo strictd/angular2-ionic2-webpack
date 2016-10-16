@@ -15,7 +15,6 @@ import { LoginService } from '../../services/login-service';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { Home } from '../pages/home/home';
-import { Loading } from '../pages/loading/loading';
 import { Login, Logoff } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -39,7 +38,6 @@ export function getAuthHttp(http) {
     AboutPage,
     ContactPage,
     Home,
-    Loading,
     Login,
     Logoff,
     TabsPage
@@ -53,7 +51,6 @@ export function getAuthHttp(http) {
     AboutPage,
     ContactPage,
     Home,
-    Loading,
     Login,
     Logoff,
     TabsPage

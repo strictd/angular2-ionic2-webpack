@@ -116,7 +116,7 @@ export class ConfigApp {
 
     if (value && !this.jwt.isTokenExpired(value)) {
       this.profile = <ProfileJWT>this.jwt.decodeToken(value);
-      console.log(this.profile);
+//      console.log(this.profile);
       this._isLoggedIn = true;
     } else { this._isLoggedIn = false; }
   }

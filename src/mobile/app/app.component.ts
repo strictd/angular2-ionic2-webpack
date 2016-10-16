@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Platform, NavController } from 'ionic-angular';
+import { Platform, NavController, LoadingController } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { MadameService } from '@strictd/ng2-madame/madame-service';
@@ -9,7 +9,6 @@ import { Observable, Subscription } from 'rxjs';
 
 import { ConfigApp } from '../../../config.app';
 
-import { Loading } from '../pages/loading/loading';
 import { Login } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -49,12 +48,13 @@ export class App implements OnInit {
   localForceLogin: Subscription;
   localMadameStash: Subscription;
 
-  rootPage: any = Loading;
+  rootPage: any;
 
   constructor(private platform: Platform,
     _config: ConfigApp,
     _service: MadameService,
     _storage: Storage,
+    _loadingCtrl: LoadingController
   ) {
     this.initializeApp();
 
@@ -62,11 +62,11 @@ export class App implements OnInit {
     _storage.get('jwt').then((token) => {
       if (tokenNotExpired(null, token)) {
         _config.token = token;
-        this.rootPage = TabsPage;
+        this.nav.setRoot(TabsPage);
       } else {
-        this.rootPage = Login;
+        this.nav.setRoot(Login);
       }
-    }).catch(err => this.rootPage = Login);
+    }).catch(err => this.nav.setRoot(Login));
 
     _service.setServer('main', _config.madameService());
     _service.setLoginObserver(App._forceLoginObserver);
