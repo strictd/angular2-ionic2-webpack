@@ -195,7 +195,9 @@ export class ConfigApp {
   }
 
   popupWindow(u, w, h) {
-    const popupwindow = window.open(u, '', 'top=10,left=10,height=' + h + ',width=' + w + ',toolbar=0,location=0,directories=0,resizable=1,status=0,menubar=0,scrollbars=1');
+    const popupwindow = window.open(u, '',
+        'top=10,left=10,height=' + h + ',width=' + w +
+        ',toolbar=0,location=0,directories=0,resizable=1,status=0,menubar=0,scrollbars=1');
     popupwindow.focus();
   }
 

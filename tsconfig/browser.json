@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES5",
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -8,14 +8,11 @@
     "sourceMap": true,
     "noEmitHelpers": true   
   },
-  "filesGlob": [
-    "**/*.ts",
-    "!node_modules/**/*"
-  ],
   "exclude": [
-    "node_modules",
-    "src/mobile",
-    "src/desktop"
+    "node_modules/**/*",
+    "backend/**/*",
+    "src/mobile/**/*",
+    "src/desktop/**/*"
   ],
   "compileOnSave": false,
   "atom": {

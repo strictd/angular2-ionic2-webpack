@@ -32,6 +32,10 @@ export function getAuthHttp(http) {
   }), http);
 }
 
+export function provideStorage() {
+ return new Storage(['sqlite', 'websql', 'indexeddb'], { name: '__mydb' }); // optional config);
+}
+
 @NgModule({
   declarations: [
     App,
@@ -57,7 +61,7 @@ export function getAuthHttp(http) {
   ],
   providers: [
     ConfigApp,
-    Storage,
+    { provide: Storage, useFactory: provideStorage },
     MadameService,
     JwtHelper,
     LoginService,

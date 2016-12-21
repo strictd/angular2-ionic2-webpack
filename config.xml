@@ -3,7 +3,7 @@
     <name>Angular2-Ionic2-Starter</name>
     <description>Angular2 Ionic2 Webpacked Starter</description>
     <author email="gary@strictdevelopment.com" href="http://strictdev.com">Strict Development Team</author>
-     <content src="index.html" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -23,17 +23,12 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-
-    <!--
-      Change these to configure how the splashscreen displays and fades in/out.
-      More info here: https://github.com/apache/cordova-plugin-splashscreen
-    -->
-    <preference name="SplashScreenDelay" value="0"/>
-    <preference name="FadeSplashScreen" value="false"/>
-    <preference name="FadeSplashScreenDuration" value="0"/>
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
-
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <plugin name="cordova-sqlite-storage" spec="~2.0.0" />
 </widget>

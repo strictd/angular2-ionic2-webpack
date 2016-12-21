@@ -1,4 +1,4 @@
-// Helper: root(), and rootDir() are defined at the bottom
+// Helper: root() is defined at the bottom
 var path = require('path');
 var webpack = require('webpack');
 
@@ -8,8 +8,6 @@ var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 /**
  * Env
@@ -50,7 +48,7 @@ module.exports = function makeWebpackConfig() {
   config.entry = isTest ? {} : {
     'polyfills': './src/browser/app/polyfills.ts',
     'vendor': './src/browser/app/vendor.ts',
-    'app': isProd ? './src/browser/app/main.prod.ts' : './src/browser/app/main.dev.ts', // our angular app
+    'app': './src/browser/app/main.ts', // our angular app
   };
 
   /**
@@ -97,10 +95,11 @@ module.exports = function makeWebpackConfig() {
       // copy those assets to output
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file?name=fonts/[name].[hash].[ext]?'
+        loader: 'file-loader?name=fonts/[name].[hash].[ext]?'
       },
+
       // Support for *.json files.
-      {test: /\.json$/, loader: 'json'},
+      {test: /\.json$/, loader: 'json-loader'},
 
       // Support for CSS as raw text
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
@@ -108,10 +107,10 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.css$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss']})
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src', 'browser'), loader: 'raw!postcss'},
+      {test: /\.css$/, include: root('src', 'browser'), loader: 'raw-loader!postcss-loader'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
@@ -119,10 +118,10 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.scss$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss', 'sass']})
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.scss$/, exclude: root('src', 'style'), loader: 'raw!postcss!sass'},
+      {test: /\.scss$/, exclude: root('src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'},
 
       // support for .sass files
       // user 'null' loader in test mode (https://github.com/webpack/null-loader)
@@ -130,16 +129,16 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.sass$/,
         exclude: root('src', 'browser'),
-        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css', 'postcss', 'sass']})
-        //loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?indentedSyntax')
+        loader: isTest ? 'null' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+        //loader: isTest ? 'null' : ExtractTextPlugin.extract('style', 'css-loader?sourceMap!postcss-loader!sass-loader?indentedSyntax')
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.sass$/, exclude: root('src', 'style'), loader: 'raw!postcss!sass?indentedSyntax'},
+      {test: /\.sass$/, exclude: root('src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader?indentedSyntax'},
 
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw',  exclude: root('src', 'browser', 'assets')}
+      {test: /\.html$/, loader: 'raw-loader',  exclude: root('src', 'browser', 'assets')}
     ]
   };
 
@@ -159,7 +158,7 @@ module.exports = function makeWebpackConfig() {
     config.module.rules.push({
       test: /\.ts$/,
       enforce: 'pre',
-      loader: 'tslint'
+      loader: 'tslint-loader'
     });
   }
 
@@ -222,14 +221,8 @@ module.exports = function makeWebpackConfig() {
     })
   ];
 
-  if (!isTest && !isProd) {
-    config.plugins.push(new DashboardPlugin());
-  }
-
   if (!isTest && !isTestWatch) {
     config.plugins.push(
-      new ForkCheckerPlugin(),
-
       // Generate common chunks if necessary
       // Reference: https://webpack.github.io/docs/code-splitting.html
       // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin

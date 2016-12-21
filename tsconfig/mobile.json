@@ -9,9 +9,10 @@
     "target": "es5"
   },
   "exclude": [
-    "node_modules",
-    "src/browser",
-    "src/desktop"    
+    "node_modules/**/*",
+    "backend/**/*",
+    "src/browser/**/*",
+    "src/desktop/**/*"
   ],
   "compileOnSave": false,
   "atom": {

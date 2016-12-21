@@ -382,6 +382,19 @@ angular2-ionic2-webpack/
   * when debugging or first writing test suites, you may find it helpful to try out Protractor commands without starting up the entire test suite. You can do this with the element explorer.
   * you can learn more about [Protractor Interactive Mode here](https://github.com/angular/protractor/blob/master/docs/debugging.md#testing-out-protractor-interactively)
 
+## Production
+
+To build your application, run:
+
+* `npm run build`
+
+You can now go to `/dist` and deploy that to your server!
+
+## Documentation
+
+You can generate api docs (using [TypeDoc](http://typedoc.org/)) for your code with the following:
+
+* `npm run docs`
 
 # FAQ
 
@@ -422,7 +435,7 @@ npm install --global typescript
 
 We have good experience using these editors:
 
-* [Visual Studio Code](https://code.visualstudio.com/) 
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [Webstorm 11+](https://www.jetbrains.com/webstorm/download/)
 * [Atom](https://atom.io/) with [TypeScript plugin](https://atom.io/packages/atom-typescript)
 * [Sublime Text](http://www.sublimetext.com/3) with [Typescript-Sublime-Plugin](https://github.com/Microsoft/Typescript-Sublime-plugin#installation)
