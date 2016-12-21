@@ -1,4 +1,6 @@
-var knex = require('knex')({
+'use strict';
+
+let knex = require('knex')({
   client: 'mysql',
   connection: {
     host : process.env.DB_HOST,
